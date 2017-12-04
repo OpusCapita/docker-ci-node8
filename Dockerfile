@@ -7,7 +7,7 @@ RUN \
       && tar -xvzf azure-cli_bundle.tar.gz \
       && apt-get update && apt-get install -y libssl-dev libffi-dev python-dev build-essential \
       && azure-cli_bundle_*/installer \
-      && echo "export PATH=$PATH:/root/bin" > /root/.profile \
+      && echo "export PATH=$PATH:/root/bin" > /root/.bashrc \
       && rm -rf /root/azure-cli_bundle* \
       && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
