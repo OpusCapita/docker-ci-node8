@@ -5,7 +5,7 @@ MAINTAINER opuscapita
 RUN \
     curl -L https://aka.ms/InstallAzureCliBundled -o azure-cli_bundle.tar.gz \
       && tar -xvzf azure-cli_bundle.tar.gz \
-      && apt-get update && apt-get install -y libssl-dev libffi-dev python-dev build-essential \
+      && apt-get update && apt-get install -y libssl-dev libffi-dev python-dev build-essential jq \
       && azure-cli_bundle_*/installer \
       && mv /root/bin/* /usr/local/bin \
       
