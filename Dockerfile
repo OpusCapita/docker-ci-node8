@@ -17,4 +17,6 @@ RUN \
     && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
     && mv /tmp/docker/* /usr/bin
 
+ADD scripts /
+
 CMD ["/bin/bash"]
