@@ -30,4 +30,4 @@ RUN \
 
 ADD scripts/* /ci-scripts/
 
-CMD ["/ci-scripts/start.sh"]
+ENTRYPOINT ["/ci-scripts/start.sh"]
