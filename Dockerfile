@@ -12,8 +12,8 @@ RUN \
     && apt-get update \
     && apt-get install -y azure-cli \
 
-    # Install httpie
-    && apt-get install -y httpie \
+    # Install httpie, jq
+    && apt-get install -y httpie jq \
 
     # Clean apt cache
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
@@ -26,7 +26,6 @@ RUN \
     && mv /tmp/docker/* /usr/bin \
 
     # Make CI scripts executable
-    && mkdir /ci-scripts \
     && mkdir /ci-scripts
 
 ADD scripts/* /ci-scripts
