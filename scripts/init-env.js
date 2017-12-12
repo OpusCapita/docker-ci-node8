@@ -12,3 +12,8 @@ run(`
   openssl aes-256-cbc -d -in .secrets -out .secrets-plain -k ${process.env.MACHINEUSER_VAULT_KEY}
 `);
 
+
+run(`
+  echo "source /ci-vault/.secrets-plain" >> ${process.env.CIRCLE_SHELL_ENV};
+`);
+
