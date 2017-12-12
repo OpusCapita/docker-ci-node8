@@ -28,6 +28,6 @@ RUN \
     # Make CI scripts executable
     && mkdir /ci-scripts
 
-ADD scripts/* /ci-scripts
+ADD scripts/* /ci-scripts/
 
 CMD ["/ci-scripts/start.sh"]
