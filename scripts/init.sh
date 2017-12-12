@@ -1,5 +1,5 @@
 #!/bin/bash
 
-$(dirname $0)/ci-scripts/init-env.js && /bin/bash
+/ci-scripts/init-env.js
 
 
