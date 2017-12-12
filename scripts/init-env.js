@@ -14,6 +14,6 @@ run(`
 
 
 run(`
-  echo "source /ci-vault/.secrets-plain" >> ${process.env.CIRCLE_SHELL_ENV};
+  echo "source /ci-vault/.secrets-plain" >> ${process.env.BASH_ENV};
 `);
 
