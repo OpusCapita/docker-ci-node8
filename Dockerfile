@@ -29,6 +29,5 @@ RUN \
     && mkdir /ci-scripts
 
 ADD scripts/* /ci-scripts/
-ADD entrypoint.sh /
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/ci-scripts/init.sh"]
