@@ -26,10 +26,10 @@ RUN \
     && mv /tmp/docker/* /usr/bin \
 
     # Make CI scripts executable
-    && mkdir /ci-scripts
+    && mkdir /ci-scripts \
 
     # Fix https://github.com/yarnpkg/yarn/issues/2816
-    && rm /usr/local/bin/yarn
+    && rm /usr/local/bin/yarn \
     && npm install -g yarn
 
 ADD scripts/* /ci-scripts/
