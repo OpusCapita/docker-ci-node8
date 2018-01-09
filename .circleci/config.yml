@@ -12,8 +12,8 @@ jobs:
       - run:
           name: build-image
           command: |
-            BUILD_REPO=`git config --get remote.origin.url` \
-            BUILD_REV=`git rev-parse HEAD` \
+            export BUILD_REPO=`git config --get remote.origin.url` \
+            export BUILD_REV=`git rev-parse HEAD` \
             docker build \
               --label BUILD_REPO=${BUILD_REPO} \
               --label BUILD_COMMIT=${BUILD_REV} \
