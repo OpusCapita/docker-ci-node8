@@ -12,6 +12,7 @@ jobs:
       - run:
           name: build-image
           command: |
+            set -x
             which git || true
             export BUILD_REPO=`git config --get remote.origin.url`
             export BUILD_REV=`git rev-parse HEAD`
