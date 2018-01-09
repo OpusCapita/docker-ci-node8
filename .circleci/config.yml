@@ -2,7 +2,7 @@ version: 2
 jobs:
   deploy-latest-docker-image:
     docker:
-      - image: docker:latest
+      - image: alpine/git:latest
 
     working_directory: ~/build
     steps:
