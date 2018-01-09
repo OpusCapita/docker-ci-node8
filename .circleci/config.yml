@@ -2,7 +2,7 @@ version: 2
 jobs:
   deploy-latest-docker-image:
     docker:
-      - image: node:8
+      - image: docker:latest
 
     working_directory: ~/build
     steps:
@@ -12,6 +12,7 @@ jobs:
       - run:
           name: build-image
           command: |
+            apk --no-cache add git bash openssh
             export BUILD_REPO=`git config --get remote.origin.url`
             export BUILD_REV=`git rev-parse HEAD`
             docker build \
