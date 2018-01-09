@@ -12,6 +12,7 @@ jobs:
       - run:
           name: build-image
           command: |
+            which git \
             export BUILD_REPO=`git config --get remote.origin.url` \
             export BUILD_REV=`git rev-parse HEAD` \
             docker build \
