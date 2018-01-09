@@ -11,7 +11,13 @@ jobs:
       
       - run:
           name: build-image
-          command: docker build -t opuscapita/ci-node8:latest .
+          command: |
+            BUILD_REPO=`git config --get remote.origin.url` \
+            BUILD_REV=`git rev-parse HEAD` \
+            docker build \
+              --label BUILD_REPO=${BUILD_REPO} \
+              --label BUILD_COMMIT=${BUILD_REV} \
+              -t opuscapita/ci-node8:latest .
           
       - run:
           name: deploy-image
