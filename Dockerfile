@@ -10,7 +10,7 @@ RUN \
     && curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
     && chmod +rx /usr/local/bin/goss \
 
-    apt-get update \
+    && apt-get update \
 
     # Install azure-cli
     && apt-get install -y apt-transport-https \
