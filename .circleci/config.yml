@@ -22,7 +22,7 @@ jobs:
       - run:
           name: test-image
           command: |
-            curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.5 GOSS_DST=~/bin sh
+            wget https://goss.rocks/install | GOSS_VER=v0.3.5 GOSS_DST=~/bin sh
             goss validate --format tap
             
       - run:
