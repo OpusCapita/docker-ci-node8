@@ -27,15 +27,14 @@ RUN \
     && VER="17.03.0-ce" \
     && curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz \
     && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
-    && mv /tmp/docker/* /usr/bin
+    && mv /tmp/docker/* /usr/bin \
 
     # Make CI scripts executable
-    # && mkdir /ci-scripts
+    && mkdir /ci-scripts
 
-# ADD scripts/* /ci-scripts/
+ADD scripts/* /ci-scripts/
 
 ADD goss/goss.yaml /goss/goss.yaml
-
 RUN goss -g /goss/goss.yaml validate --format tap
 
 HEALTHCHECK --interval=10s --timeout=5s CMD goss -g /goss/goss.yaml validate
