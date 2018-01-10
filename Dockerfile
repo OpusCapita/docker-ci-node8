@@ -2,8 +2,6 @@ FROM node:8
 
 LABEL maintainer="kirill.volkovich@opuscapita.com"
 
-ADD goss/goss.yaml /goss/goss.yaml
-
 RUN \
     set -x \
     # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
@@ -34,9 +32,9 @@ RUN \
     # Make CI scripts executable
     && mkdir /ci-scripts
 
-ADD scripts/* /ci-scripts/
+ADD goss/goss.yaml /goss/goss.yaml
 
-RUN goss -g /goss/goss.yaml validate
+RUN goss -g /goss/goss.yaml validate --format tap
 
 HEALTHCHECK --interval=1s --timeout=6s CMD goss -g /goss/goss.yaml validate
 
