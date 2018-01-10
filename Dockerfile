@@ -30,7 +30,9 @@ RUN \
 
     # Fix https://github.com/yarnpkg/yarn/issues/2816
     && rm /usr/local/bin/yarn \
-    && npm install -g yarn
+    && npm install -g yarn \
+    # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
+    curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.5 GOSS_DST=~/bin sh
 
 ADD scripts/* /ci-scripts/
 
