@@ -5,4 +5,3 @@
 * Azure CLI
 * [jq](https://stedolan.github.io/jq/)
 * [httpie](https://httpie.org/)
-

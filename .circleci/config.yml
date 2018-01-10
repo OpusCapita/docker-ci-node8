@@ -2,7 +2,7 @@ version: 2
 jobs:
   deploy-latest-docker-image:
     docker:
-      - image: docker:latest
+      - image: docker:17.12.0-ce
 
     working_directory: ~/build
     steps:
@@ -19,7 +19,12 @@ jobs:
               --label BUILD_REPO=${BUILD_REPO} \
               --label BUILD_COMMIT=${BUILD_REV} \
               -t opuscapita/ci-node8:latest .
-          
+      - run:
+          name: test-image
+          command: |
+            curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.5 GOSS_DST=~/bin sh
+            goss validate --format tap
+            
       - run:
           name: deploy-image
           command: |

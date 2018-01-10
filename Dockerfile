@@ -1,6 +1,6 @@
 FROM node:8
 
-MAINTAINER opuscapita
+LABEL maintainer="kirill.volkovich@opuscapita.com"
 
 RUN \
     apt-get update \
@@ -10,10 +10,10 @@ RUN \
     && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | tee /etc/apt/sources.list.d/azure-cli.list \
     && apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893 \
     && apt-get update \
-    && apt-get install -y azure-cli \
+    && apt-get install -y azure-cli=2.0.24-1 \
 
     # Install httpie, jq
-    && apt-get install -y httpie jq \
+    && apt-get install -y httpie=0.8.0-1 jq=1.4-2.1+deb8u1 \
 
     # Clean apt cache
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
@@ -28,11 +28,9 @@ RUN \
     # Make CI scripts executable
     && mkdir /ci-scripts \
 
-    # Fix https://github.com/yarnpkg/yarn/issues/2816
-    && rm /usr/local/bin/yarn \
-    && npm install -g yarn \
     # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
-    curl -fsSL https://goss.rocks/install | GOSS_VER=v0.3.5 GOSS_DST=~/bin sh
+    && curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
+    && chmod +rx /usr/local/bin/goss								 
 
 ADD scripts/* /ci-scripts/
 

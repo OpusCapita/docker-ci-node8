@@ -1,0 +1,40 @@
+file:
+  /ci-scripts:
+    exists: true
+    mode: "0755"
+    size: 4096
+    owner: root
+    group: root
+    filetype: directory
+    contains: []
+command:
+  az -v | head -n1:
+    exit-status: 0
+    stdout:
+    - azure-cli (2.0.24)
+    stderr: []
+    timeout: 10000
+  docker --version:
+    exit-status: 0
+    stdout:
+    - Docker version 17.03.0-ce, build 60ccb22
+    stderr: []
+    timeout: 10000
+  goss --version:
+    exit-status: 0
+    stdout:
+    - goss version v0.3.5
+    stderr: []
+    timeout: 10000
+  http --version:
+    exit-status: 1
+    stdout: []
+    stderr:
+    - 0.8.0
+    timeout: 10000
+  jq --version:
+    exit-status: 0
+    stdout:
+    - jq-1.4-1-e73951f
+    stderr: []
+    timeout: 10000
