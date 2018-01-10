@@ -30,12 +30,14 @@ RUN \
     && mv /tmp/docker/* /usr/bin \
 
     # Make CI scripts executable
-    && mkdir /ci-scripts
+    # && mkdir /ci-scripts
+
+ADD scripts/* /ci-scripts/
 
 ADD goss/goss.yaml /goss/goss.yaml
 
 RUN goss -g /goss/goss.yaml validate --format tap
 
-HEALTHCHECK --interval=1s --timeout=6s CMD goss -g /goss/goss.yaml validate
+HEALTHCHECK --interval=10s --timeout=5s CMD goss -g /goss/goss.yaml validate
 
 ENTRYPOINT ["/ci-scripts/init.sh"]
