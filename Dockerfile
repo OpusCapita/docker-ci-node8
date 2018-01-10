@@ -5,8 +5,9 @@ LABEL maintainer="kirill.volkovich@opuscapita.com"
 ADD goss/goss.yaml /goss/goss.yaml
 
 RUN \
+    set -x \
     # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
-    curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
+    && curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
     && chmod +rx /usr/local/bin/goss \
 
     apt-get update \
@@ -25,7 +26,6 @@ RUN \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
 
     # Install Docker locally
-    && set -x \
     && VER="17.03.0-ce" \
     && curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz \
     && tar -xz -C /tmp -f /tmp/docker-$VER.tgz \
