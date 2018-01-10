@@ -2,10 +2,13 @@ FROM node:8
 
 LABEL maintainer="kirill.volkovich@opuscapita.com"
 
-ONBUILD FROM aelsabbahy/goss:onbuild
-ONBUILD CMD ["validate", "--retry-timeout", "5m", "--sleep", "10s"]
+ADD goss/goss.yaml /goss/goss.yaml
 
 RUN \
+    # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
+    && curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
+    && chmod +rx /usr/local/bin/goss \
+
     apt-get update \
 
     # Install azure-cli
@@ -29,12 +32,12 @@ RUN \
     && mv /tmp/docker/* /usr/bin \
 
     # Make CI scripts executable
-    && mkdir /ci-scripts \
-
-    # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
-    && curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
-    && chmod +rx /usr/local/bin/goss								 
+    && mkdir /ci-scripts
 
 ADD scripts/* /ci-scripts/
+
+RUN goss /goss/goss.yaml validate --format tap
+
+HEALTHCHECK --interval=1s --timeout=6s CMD goss -g /goss/goss.yaml validate
 
 ENTRYPOINT ["/ci-scripts/init.sh"]
