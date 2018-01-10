@@ -2,6 +2,9 @@ FROM node:8
 
 LABEL maintainer="kirill.volkovich@opuscapita.com"
 
+ONBUILD FROM aelsabbahy/goss:onbuild
+ONBUILD CMD ["validate", "--retry-timeout", "5m", "--sleep", "10s"]
+
 RUN \
     apt-get update \
 
