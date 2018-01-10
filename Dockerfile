@@ -32,7 +32,7 @@ RUN \
     # Make CI scripts executable
     # && mkdir /ci-scripts
 
-ADD scripts/* /ci-scripts/
+# ADD scripts/* /ci-scripts/
 
 ADD goss/goss.yaml /goss/goss.yaml
 
