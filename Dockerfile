@@ -6,7 +6,7 @@ ADD goss/goss.yaml /goss/goss.yaml
 
 RUN \
     # Install goss (docker image validation tool) : https://github.com/aelsabbahy/goss
-    && curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
+    curl -L https://github.com/aelsabbahy/goss/releases/download/v0.3.5/goss-linux-amd64 -o /usr/local/bin/goss \
     && chmod +rx /usr/local/bin/goss \
 
     apt-get update \
