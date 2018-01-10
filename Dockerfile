@@ -36,7 +36,7 @@ RUN \
 
 ADD scripts/* /ci-scripts/
 
-RUN goss /goss/goss.yaml validate --format tap
+RUN goss -g /goss/goss.yaml validate
 
 HEALTHCHECK --interval=1s --timeout=6s CMD goss -g /goss/goss.yaml validate
 
